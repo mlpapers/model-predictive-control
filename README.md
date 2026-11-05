@@ -34,8 +34,11 @@
 
 ## Latent planning and comparative evidence
 
-- **TD-MPC** - Learns task-oriented latent dynamics and a terminal value function jointly by temporal-difference learning. Short-horizon planning uses the value estimate for longer-term return; no observation reconstruction is required. [Hansen et al. 2022](<https://arxiv.org/abs/2203.04955> "Temporal Difference Learning for Model Predictive Control; ICML").
+- **TD-MPC** - Jointly learns rewards, values and action-conditioned latent dynamics. Matching future encodings regularizes the model without observation reconstruction. Short-horizon planning uses a terminal value estimate for longer-term return. [Hansen et al. 2022](<https://arxiv.org/abs/2203.04955> "Temporal Difference Learning for Model Predictive Control; ICML").
     - **TD-MPC2** - Extends latent MPC and reports strong results across 104 tasks with one hyperparameter set. Its multi-task scaling experiments assess control return; these benchmarks do not certify physical constraint satisfaction. [Hansen et al. 2024](<https://arxiv.org/abs/2310.16828> "TD-MPC2: Scalable, Robust World Models for Continuous Control; ICLR").
+- **V-JEPA 2-AC** - Learns action-conditioned dynamics on frozen video-JEPA features and plans toward image goals. Demonstrates robot grasping and pick-and-place in two labs without task-reward training. Pick-and-place uses supplied subgoal images. [Assran et al. 2025](<https://arxiv.org/abs/2506.09985v1> "V-JEPA 2: Self-Supervised Video Models Enable Understanding, Prediction and Planning; arXiv"); [code](<https://github.com/facebookresearch/vjepa2>).
+- **DINO-WM** - Learns action-conditioned dynamics over frozen DINOv2 patch features without pixel reconstruction and plans toward image goals. On simulated PushT with goals reachable within 25 steps, success is 90% versus 44% with a global DINO embedding. [Zhou et al. 2025](<https://proceedings.mlr.press/v267/zhou25t.html> "DINO-WM: World Models on Pre-trained Visual Features enable Zero-shot Planning; ICML").
+    - **ID-WM** - Searches diffusion noise for nearby subgoals, then plans actions with a local dynamics model. On simulated PushT with random goals and state observations, success is 77% versus 28% for a flat planner given matched inference time. [Zhou et al. 2026](<https://arxiv.org/abs/2610.42146v1> "Hierarchical World Models with Implicit Dynamics; arXiv").
 - **MPC-RL combinations** - Reiter et al. distinguish MPC as an expert for training, as part of the deployed policy, or as part of the critic. This separates learning from planned demonstrations, learning a controller's parameters and learning value estimates. [Reiter et al. 2026](<https://publications.syscop.de/Reiter2026.pdf> "Synthesis of model predictive control and reinforcement learning: Survey and classification; Annual Reviews in Control").
 
 <a id="software-and-references"></a>
@@ -47,6 +50,7 @@
 
 ## Related topics
 
+- [Feature extraction](https://mlpapers.org/feature-extraction/)
 - [Reinforcement learning](https://mlpapers.org/reinforcement-learning/)
 - [Optimization](https://mlpapers.org/optimization/)
 - [Symbolic regression](https://mlpapers.org/symbolic-regression/)
